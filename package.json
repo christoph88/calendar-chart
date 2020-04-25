@@ -1,0 +1,26 @@
+{
+  "dsccViz": {
+    "gcsDevBucket": "gs://datastudio-visualisations/calendar-chart-dev",
+    "gcsProdBucket": "gs://datastudio-visualisations/calendar-chart-prod",
+    "jsFile": "index.js",
+    "jsonFile": "index.json",
+    "cssFile": "index.css",
+    "print": "printMessage.js"
+  },
+  "scripts": {
+    "build:dev": "dscc-scripts viz build -d dev",
+    "build:prod": "dscc-scripts viz build -d prod",
+    "push:dev": "dscc-scripts viz push -d dev",
+    "push:prod": "dscc-scripts viz push -d prod",
+    "update_message": "dscc-scripts viz update_message -f object",
+    "start": "dscc-scripts viz start"
+  },
+  "devDependencies": {
+    "@google/dscc": "^0.3.17",
+    "@google/dscc-scripts": "^1.0.15",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-vue": "^6.2.2"
+  }
+}
