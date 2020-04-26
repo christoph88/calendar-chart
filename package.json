@@ -12,7 +12,7 @@
     "build:prod": "dscc-scripts viz build -d prod",
     "push:dev": "dscc-scripts viz push -d dev",
     "push:prod": "dscc-scripts viz push -d prod",
-    "update_message": "dscc-scripts viz update_message -f object",
+    "update_message": "dscc-scripts viz update_message -f table",
     "start": "dscc-scripts viz start"
   },
   "devDependencies": {

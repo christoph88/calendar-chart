@@ -1,53 +1,127 @@
 export const message = {
   tables: {
-    DEFAULT: [
-      {
-        dimension: [
-          'Karaoke Huren Vlaanderen – Huureenkaraoke',
+    DEFAULT: {
+      headers: [
+        {
+          id: 'qt_09n9auf07b',
+          name: 'Datum',
+          type: 'YEAR_MONTH_DAY',
+          concept: 'DIMENSION',
+          configId: 'dimension',
+        },
+        {
+          id: 'qt_lv6hhuf07b',
+          name: 'Aantal sessies',
+          type: 'NUMBER',
+          concept: 'METRIC',
+          configId: 'metric',
+        },
+      ],
+      rows: [
+        [
+          '20200425',
+          '3',
         ],
-        metric: [
-          26,
+        [
+          '20200410',
+          '3',
         ],
-      },
-      {
-        dimension: [
-          'Ponykampen inschrijvingsformulier Mini ponyclub de Pepitos',
+        [
+          '20200405',
+          '2',
         ],
-        metric: [
-          9,
+        [
+          '20200404',
+          '1',
         ],
-      },
-      {
-        dimension: [
-          'Karaoke Reservatieformulier',
+        [
+          '20200331',
+          '1',
         ],
-        metric: [
-          1,
+        [
+          '20200402',
+          '1',
         ],
-      },
-      {
-        dimension: [
-          'Huurvoorwaarden – Huureenkaraoke',
+        [
+          '20200411',
+          '1',
         ],
-        metric: [
-          1,
+        [
+          '20200423',
+          '1',
         ],
-      },
-    ],
+        [
+          '20200414',
+          '1',
+        ],
+        [
+          '20200409',
+          '1',
+        ],
+        [
+          '20200401',
+          '1',
+        ],
+        [
+          '20200421',
+          '1',
+        ],
+        [
+          '20200422',
+          '1',
+        ],
+        [
+          '20200416',
+          '1',
+        ],
+        [
+          '20200418',
+          '1',
+        ],
+        [
+          '20200420',
+          '1',
+        ],
+        [
+          '20200413',
+          '1',
+        ],
+        [
+          '20200407',
+          '1',
+        ],
+        [
+          '20200408',
+          '1',
+        ],
+        [
+          '20200412',
+          '1',
+        ],
+        [
+          '20200406',
+          '1',
+        ],
+        [
+          '20200403',
+          '1',
+        ],
+      ],
+    },
   },
   fields: {
     dimension: [
       {
-        id: 'qt_u46tmdez7b',
-        name: 'Paginatitel',
-        type: 'TEXT',
+        id: 'qt_09n9auf07b',
+        name: 'Datum',
+        type: 'YEAR_MONTH_DAY',
         concept: 'DIMENSION',
       },
     ],
     metric: [
       {
-        id: 'qt_nueumdez7b',
-        name: 'Nieuwe gebruikers',
+        id: 'qt_lv6hhuf07b',
+        name: 'Aantal sessies',
         type: 'NUMBER',
         concept: 'METRIC',
       },

@@ -6,53 +6,58 @@ const local = require('./localMessage.js');
 // change this to 'false' before deploying
 export const LOCAL = true;
 
-// Load the charts library with a callback
-// GoogleCharts.load(drawChart);
-GoogleCharts.load(drawChart, { packages: ['calendar'] });
-console.log(GoogleCharts);
-document.body.innerHTML += '<div id="chart1"></div>';
 
-function drawChart(test) {
-  const margin = {
-    left: 20, right: 20, top: 20, bottom: 20,
-  };
-  const height = dscc.getHeight() - 10;
-  const width = dscc.getWidth();
+const height = dscc.getHeight;
+const width = dscc.getWidth;
 
-  console.log(height);
+document.body.innerHTML += `<div id="calendar_basic" style="width: ${width}px; height: ${height}px;"></div>`;
 
-  const chartHeight = height - margin.top - margin.bottom;
-  const chartWidth = width - margin.left - margin.right;
-  // Standard google charts functionality is available as GoogleCharts.api after load
-  const dataTable = GoogleCharts.api.visualization.arrayToDataTable([
-    ['date', 'won/los'],
-    [new Date(2012, 3, 13), 37032],
-    [new Date(2012, 3, 14), 38024],
-    [new Date(2012, 3, 15), 38024],
-    [new Date(2012, 3, 16), 38108],
-    [new Date(2012, 3, 17), 38229],
-    // Many rows omitted for brevity.
-    [new Date(2013, 9, 4), 38177],
-    [new Date(2013, 9, 5), 38705],
-    [new Date(2013, 9, 12), 38210],
-    [new Date(2013, 9, 13), 38029],
-    [new Date(2013, 9, 19), 38823],
-    [new Date(2013, 9, 23), 38345],
-    [new Date(2013, 9, 24), 38436],
-    [new Date(2013, 9, 30), 38447],
-  ]);
-  const calendar = new GoogleCharts.api.visualization.Calendar(document.getElementById('chart1'));
-  calendar.draw(dataTable);
+
+function getTable(data) {
+  let { headers } = data.tables.DEFAULT;
+  let { rows } = data.tables.DEFAULT;
+  headers = headers.map((head) => head.name);
+  rows = rows.map((row) => {
+    const year = row[0].substring(0, 4);
+    const month = row[0].substring(4, 6);
+    const day = row[0].substring(6, 8);
+    return [new Date(year, month, day), parseFloat(row[1])];
+  });
+
+  const table = [headers].concat(rows);
+
+  return table;
 }
 
-// const drawViz = (data) => {
-// viz.readmeViz();
-// viz.firstViz(data);
-// };
+
+async function drawChart(data) {
+  // wait for the data to be processed in the proper format
+  const table = await getTable(data);
+
+  // wait for the chart library to properly load before drawing
+  await GoogleCharts.load(draw, { packages: ['calendar'] });
+
+  // start drawing with library and proper data
+  function draw() {
+    const dataTable = GoogleCharts.api.visualization.arrayToDataTable(table);
+
+    const calendar = new GoogleCharts.api.visualization.Calendar(document.getElementById('calendar_basic'));
+
+    const options = {
+      // title: 'Red Sox Attendance',
+      calendar: { cellSize: 10 },
+      height: dscc.getHeight(),
+      width: dscc.getWidth(),
+    };
+
+    calendar.draw(dataTable, options);
+  }
+}
 
 // renders locally
+// pass the information to the function
 if (LOCAL) {
   drawChart(local.message);
 } else {
-  dscc.subscribeToData(drawChart, { transform: dscc.objectTransform });
+  dscc.subscribeToData(drawChart, { transform: dscc.tableTransform });
 }
