@@ -24,7 +24,7 @@ function drawChart(test) {
   const chartHeight = height - margin.top - margin.bottom;
   const chartWidth = width - margin.left - margin.right;
   // Standard google charts functionality is available as GoogleCharts.api after load
-  const data = GoogleCharts.api.visualization.arrayToDataTable([
+  const dataTable = GoogleCharts.api.visualization.arrayToDataTable([
     ['date', 'won/los'],
     [new Date(2012, 3, 13), 37032],
     [new Date(2012, 3, 14), 38024],
@@ -41,8 +41,8 @@ function drawChart(test) {
     [new Date(2013, 9, 24), 38436],
     [new Date(2013, 9, 30), 38447],
   ]);
-  const pie_1_chart = new GoogleCharts.api.visualization.Calendar(document.getElementById('chart1'));
-  pie_1_chart.draw(data);
+  const calendar = new GoogleCharts.api.visualization.Calendar(document.getElementById('chart1'));
+  calendar.draw(dataTable);
 }
 
 // const drawViz = (data) => {
