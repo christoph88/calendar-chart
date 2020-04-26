@@ -7,12 +7,12 @@ const local = require('./localMessage.js');
 export const LOCAL = true;
 
 // Load the charts library with a callback
-GoogleCharts.load(drawChart);
+// GoogleCharts.load(drawChart);
+GoogleCharts.load(drawChart, { packages: ['calendar'] });
+console.log(GoogleCharts);
 document.body.innerHTML += '<div id="chart1"></div>';
 
 function drawChart(test) {
-  console.log(GoogleCharts);
-
   const margin = {
     left: 20, right: 20, top: 20, bottom: 20,
   };
@@ -25,12 +25,23 @@ function drawChart(test) {
   const chartWidth = width - margin.left - margin.right;
   // Standard google charts functionality is available as GoogleCharts.api after load
   const data = GoogleCharts.api.visualization.arrayToDataTable([
-    ['Chart thing', 'Chart amount'],
-    ['Lorem ipsum', 60],
-    ['Dolor sit', 22],
-    ['Sit amet', 18],
+    ['date', 'won/los'],
+    [new Date(2012, 3, 13), 37032],
+    [new Date(2012, 3, 14), 38024],
+    [new Date(2012, 3, 15), 38024],
+    [new Date(2012, 3, 16), 38108],
+    [new Date(2012, 3, 17), 38229],
+    // Many rows omitted for brevity.
+    [new Date(2013, 9, 4), 38177],
+    [new Date(2013, 9, 5), 38705],
+    [new Date(2013, 9, 12), 38210],
+    [new Date(2013, 9, 13), 38029],
+    [new Date(2013, 9, 19), 38823],
+    [new Date(2013, 9, 23), 38345],
+    [new Date(2013, 9, 24), 38436],
+    [new Date(2013, 9, 30), 38447],
   ]);
-  const pie_1_chart = new GoogleCharts.api.visualization.PieChart(document.getElementById('chart1'));
+  const pie_1_chart = new GoogleCharts.api.visualization.Calendar(document.getElementById('chart1'));
   pie_1_chart.draw(data);
 }
 
