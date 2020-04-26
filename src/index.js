@@ -4,7 +4,7 @@ const local = require('./localMessage.js');
 
 // change this to 'true' for local development
 // change this to 'false' before deploying
-export const LOCAL = true;
+export const LOCAL = false;
 
 
 const height = dscc.getHeight();
