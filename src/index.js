@@ -7,8 +7,8 @@ const local = require('./localMessage.js');
 export const LOCAL = true;
 
 
-const height = dscc.getHeight;
-const width = dscc.getWidth;
+const height = dscc.getHeight();
+const width = dscc.getWidth();
 
 document.body.innerHTML += `<div id="calendar_basic" style="width: ${width}px; height: ${height}px;"></div>`;
 
@@ -43,11 +43,12 @@ async function drawChart(data) {
 
     const calendar = new GoogleCharts.api.visualization.Calendar(document.getElementById('calendar_basic'));
 
+    console.log(width);
     const options = {
       // title: 'Red Sox Attendance',
-      calendar: { cellSize: 10 },
-      height: dscc.getHeight(),
-      width: dscc.getWidth(),
+      calendar: { cellSize: width / 58 },
+      height,
+      width,
     };
 
     calendar.draw(dataTable, options);
